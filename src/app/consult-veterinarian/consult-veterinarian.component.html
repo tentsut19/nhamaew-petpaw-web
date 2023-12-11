@@ -1,0 +1,246 @@
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "small" color = "#fff" type = "line-scale-party" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
+
+<div class="page-breadcrumb">
+    <div class="row">
+        <div class="col-5 align-self-center">
+            <h4 class="page-title">รายการปรึกษาสัตวแพทย์</h4>
+            <!-- <div class="d-flex align-items-center">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">กิจกรรม</li>
+                    </ol>
+                </nav>
+            </div> -->
+        </div>
+        <!-- <div class="col-7 align-self-center">
+            <div class="d-flex no-block justify-content-end align-items-center">
+                <button type="button" class="btn btn-success" 
+                data-toggle="modal" data-target="#modal-activity-add" *ngIf="perm[12].pinsert == true"><i class="fa fa-plus"></i> เพิ่มกิจกรรม</button>
+            </div>
+        </div> -->
+    </div>
+</div>
+<br />
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header card-header-cover-table">
+                    <div class="row">
+                        <div class="col-9">
+                            ค้นหา รายการปรึกษาสัตวแพทย์
+                        </div>
+                        <div class="col-3">
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row"> 
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label>ค้นหาด้วย เลขที่,ชื่อน้องแมว,สายพันธุ์,ชื่อไลน์</label>
+                            <input class="form-control" type="text" name="input" [(ngModel)]="input" [ngModelOptions]="{standalone: true}" />
+                          </div>
+                        </div>
+                        <div class="col-md-2">
+                          <label>ช่วงวันที่ทำรายการ</label>
+                          <div class="input-group date">
+                            <input type="text" class="form-control" [disabled]="!isShowStartWork"
+                            daterangepicker [options]="optionsDate" (selected)="selectedDate($event, daterange)">
+                            <span class="input-group-addon input-group-text" style="cursor: pointer;" (click)="showStartWork()">
+                                <i *ngIf="!isShowStartWork" class="fa fa-calendar"></i>
+                                <i *ngIf="isShowStartWork" class="fa fa-ban"></i>
+                            </span>
+                          </div>
+                        </div>
+                        <div class="col-md-2">
+                          <div class="form-group">
+                            <label>สถานะ</label>
+                            <select class="form-control" [(ngModel)]="status">
+                                <option value="">all</option>
+                                <option value="W">รอรับเรื่อง</option>
+                                <option value="R">รับเรื่อง</option>
+                                <option value="S">ส่งงานต่อ</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-md-2">
+                          <button type="button" class="btn btn-info" (click)="searchConsultVeterinarianByCriteriaPage()" style="margin-top: 30px;"><i class="fa fa-search"></i> Search</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header card-header-cover-table">
+                    รายการปรึกษาสัตวแพทย์
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th style="width: 10%;" class="center">เลขที่</th>
+                                    <th style="width: 10%;" class="center">ชื่อไลน์</th>
+                                    <th style="width: 10%;" class="center">รูปไลน์</th>
+                                    <th style="width: 10%;" class="center">ชื่อน้องแมว</th>
+                                    <th style="width: 10%;" class="center">สายพันธุ์</th>
+                                    <th style="width: 20%;" class="center">อาการเบื้องต้น</th>
+                                    <th style="width: 10%;" class="center">สถานะ</th>
+                                    <th style="width: 10%;" class="center">โหมด</th>
+                                    <th style="width: 10%;" class="center">วันที่ทำรายการ</th>
+                                    <th style="width: 5%;" class="center"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of responseList; index as i">
+                                    <td style="width: 10%;" class="center">{{item.code}}</td>
+                                    <td style="width: 10%;" class="center">{{item.displayName}}</td>
+                                    <td style="width: 10%;" class="center">
+                                        <div class="user-pic"><img src="{{item.pictureUrl}}" alt="users" class="rounded-circle"
+                                            width="120" /></div>
+                                    </td>
+                                    <td style="width: 10%;" class="center">{{item.nameCat}}</td>
+                                    <td style="width: 10%;" class="center">{{item.breeds}}</td>
+                                    <td style="width: 20%;" class="center">
+                                        <textarea rows="5" class="form-control" [(ngModel)]="item.initialSymptoms" [ngModelOptions]="{standalone: true}" [readonly]="true"></textarea>
+                                    </td>
+                                    <td style="width: 10%;" class="center">
+                                        <b *ngIf="item.status == 'W' " style="color: orange;">{{item.statusDisplay}}</b>
+                                        <b *ngIf="item.status == 'R' " style="color: blue;">{{item.statusDisplay}}</b>
+                                        <b *ngIf="item.status == 'S' " style="color: green;">{{item.statusDisplay}}</b>
+                                    </td>
+                                    <td style="width: 10%;" class="center">
+                                        <b *ngIf="item.botMode == 'BOT' " style="color: green;">{{item.botModeDisplay}}</b>
+                                        <b *ngIf="item.botMode == 'MANUAL' " style="color: orange;">{{item.botModeDisplay}}</b>
+                                    </td>
+                                    <td style="width: 10%;" class="center">{{item.createdAt | date: 'dd/MM/yyyy HH:mm:ss'}}</td>
+                                    <td style="width: 5%;" class="center">
+                                        <a href="javascript:void(0);" (click)="openDialogDetail(item)">
+                                          <span class="fas fa-list btn-add"></span></a>
+                                          &nbsp;
+                                      </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- basic-pagination -->
+                    <basic-pagination [itemStart]="itemStart" 
+                                [itemEnd]="itemEnd"
+                                [page]="page" 
+                                [count]="count"
+                                (pageOutPut)="handlePageChange($event)" 
+                                (pageSizeOutPut)="handlePageSizeChange($event)">
+                    </basic-pagination>
+                    <!-- basic-pagination -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <!--modal detail-->
+    <div class="modal" id="modal-detail" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header modal-header-add">
+                    <h4 class="modal-title" id="exampleModalLabel1">รายละเอียด</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <form [formGroup]="addForm">
+                        <div class="form-group">
+                            <label class="control-label">ชื่อน้องแมว</label>
+                            <input type="text" class="form-control" formControlName="nameCat" [readonly]="true">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">สายพันธุ์ (Breeds)</label>
+                            <input type="text" class="form-control" formControlName="breeds" [readonly]="true">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">อายุ (โดยประมาณ) ปี</label>
+                            <input type="text" class="form-control" formControlName="year" [readonly]="true">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">อายุ (โดยประมาณ) เดือน</label>
+                            <input type="text" class="form-control" formControlName="month" [readonly]="true">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">ทำหมัน</label>
+                            <input type="text" class="form-control" formControlName="sterilization" [readonly]="true">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">มีการฉีดวัคซีนครบตามกำหนด</label>
+                            <input type="text" class="form-control" formControlName="vaccine" [readonly]="true">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">ประวัติแพ้ยา</label>
+                            <input type="text" class="form-control" formControlName="historyDrugAllergy" [readonly]="true">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">มีการผ่าตัดจากความเจ็บป่วยมาก่อนหรือไม่</label>
+                            <input type="text" class="form-control" formControlName="surgery" [readonly]="true">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">โรคประจำตัว</label>
+                            <input type="text" class="form-control" formControlName="congenitalDisease" [readonly]="true">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">อาการเบื้องต้น</label>
+                            <textarea rows="5" class="form-control" formControlName="initialSymptoms" [readonly]="true"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">ตำแหน่งที่ตั้งที่ต้องการให้แนะนำ</label>
+                            <input type="text" class="form-control" formControlName="address" [readonly]="true">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">ชื่อเจ้าของ</label>
+                            <input type="text" class="form-control" formControlName="ownerName" [readonly]="true">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">เบอรโทรให้เราติดต่อกลับ</label>
+                            <input type="text" class="form-control" formControlName="phoneNumber" [readonly]="true">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">อีเมลให้เราติดต่อกลับ</label>
+                            <input type="text" class="form-control" formControlName="email" [readonly]="true">
+                        </div>
+                        <div class="form-group m-b-30">
+                            <label for="exampleFormControlSelect1">สถานะ</label>
+                            <select class="form-control" formControlName="status" [ngClass]="{ 'is-invalid': submitted_add &amp;&amp; addForm.controls.status.errors }">
+                                <option value="W">รอรับเรื่อง</option>
+                                <option value="R">รับเรื่อง</option>
+                                <option value="S">ส่งงานต่อ</option>
+                            </select>
+                            <div *ngIf="submitted_add &amp;&amp; addForm.controls.status.errors" class="text-danger">
+                              <div *ngIf="addForm.controls.status.errors.required">โปรดระบุ สถานะ</div>
+                          </div>
+                        </div>
+                        <div class="form-group m-b-30">
+                            <label for="exampleFormControlSelect1">โหมด</label>
+                            <select class="form-control" formControlName="botMode" [ngClass]="{ 'is-invalid': submitted_add &amp;&amp; addForm.controls.botMode.errors }">
+                                <option value="BOT">โหมดบอท</option>
+                                <option value="MANUAL">โหมดแมนนวล</option>
+                            </select>
+                            <div *ngIf="submitted_add &amp;&amp; addForm.controls.botMode.errors" class="text-danger">
+                              <div *ngIf="addForm.controls.botMode.errors.required">โปรดระบุ โหมด</div>
+                          </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" (click)="patchStatusAndBotMode()">บันทึก</button>
+                    <button type="button" class="btn btn-light" data-dismiss="modal">ยกเลิก</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End modal detail-->
+  

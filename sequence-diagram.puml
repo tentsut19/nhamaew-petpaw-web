@@ -1,0 +1,13 @@
+@startuml
+title
+ <u>Easynet flow sale</u>
+end title
+
+
+
+"พนักงานขาย" -> "ลูกค้า" : ออกไปเก็บแบบสอบถาม
+
+
+
+
+@enduml

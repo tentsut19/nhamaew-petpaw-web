@@ -1,0 +1,137 @@
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "small" color = "#fff" type = "line-scale-party" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
+
+<div class="page-breadcrumb">
+    <div class="row">
+        <div class="col-5 align-self-center">
+            <h4 class="page-title">Intents</h4>
+            <!-- <div class="d-flex align-items-center">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">กิจกรรม</li>
+                    </ol>
+                </nav>
+            </div> -->
+        </div>
+        <!-- <div class="col-7 align-self-center">
+            <div class="d-flex no-block justify-content-end align-items-center">
+                <button type="button" class="btn btn-success" 
+                data-toggle="modal" data-target="#modal-activity-add" *ngIf="perm[12].pinsert == true"><i class="fa fa-plus"></i> เพิ่มกิจกรรม</button>
+            </div>
+        </div> -->
+    </div>
+</div>
+<br />
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header card-header-cover-table">
+                    <div class="row">
+                        <div class="col-9">
+                            ค้นหา Intents
+                        </div>
+                        <div class="col-3">
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row"> 
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label>ข้อความที่ต้องการใช้ในการค้นหา</label>
+                            <input class="form-control" type="text" name="input" [(ngModel)]="input" [ngModelOptions]="{standalone: true}" />
+                          </div>
+                        </div>
+                        <div class="col-md-2">
+                          <label>ช่วงวันที่ทำรายการ</label>
+                          <div class="input-group date">
+                            <input type="text" class="form-control" [disabled]="!isShowStartWork"
+                            daterangepicker [options]="optionsDate" (selected)="selectedDate($event, daterange)">
+                            <span class="input-group-addon input-group-text" style="cursor: pointer;" (click)="showStartWork()">
+                                <i *ngIf="!isShowStartWork" class="fa fa-calendar"></i>
+                                <i *ngIf="isShowStartWork" class="fa fa-ban"></i>
+                            </span>
+                          </div>
+                        </div>
+                        <div class="col-md-2">
+                          <div class="form-group">
+                            <label>status</label>
+                            <select class="form-control" [(ngModel)]="status">
+                                <option value="">all</option>
+                                <option value="waiting verify">waiting verify</option>
+                                <option value="verifying">verifying</option>
+                                <option value="verified">verified</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-md-2">
+                          <div class="form-group">
+                            <label>tag</label>
+                            <select class="form-control" [(ngModel)]="tagId">
+                                <option value="">all</option>
+                                <option *ngFor="let item of tagList" value="{{item.id}}">{{item.content}}</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-md-2">
+                          <button type="button" class="btn btn-info" (click)="searchIntentsVerifyByCriteriaPage()" style="margin-top: 30px;"><i class="fa fa-search"></i> Search</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header card-header-cover-table">
+                    รายการ Intents
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th style="width: 5%;" class="center">ลำดับ</th>
+                                    <th style="width: 30%;" class="center">Intents</th>
+                                    <th style="width: 10%;" class="center">status</th>
+                                    <th style="width: 20%;" class="center">tag</th>
+                                    <th style="width: 10%;" class="center">ผู้ที่แก้ไขรายการ</th>
+                                    <th style="width: 10%;" class="center">วันที่แก้ไข</th>
+                                    <th style="width: 5%;" class="center"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of intentsList; index as i">
+                                    <td style="width: 5%;" class="center">{{i+1}}</td>
+                                    <td style="width: 30%;" class="center">{{item.nameAndCount}}</td>
+                                    <td style="width: 10%;" class="center">{{item.status}}</td>
+                                    <td style="width: 20%;" class="center">{{item.tagName}}</td>
+                                    <td style="width: 10%;" class="center">{{item.updatedBy}}</td>
+                                    <td style="width: 10%;" class="center">{{item.updatedDate | date: 'dd/MM/yyyy HH:mm:ss'}}</td>
+                                    <td style="width: 5%;" class="center">
+                                        <a href="#/intents/detail/{{item?.id}}" target="_blank">
+                                          <span class="fas fa-list btn-add"></span></a>
+                                          &nbsp;
+                                      </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- basic-pagination -->
+                    <basic-pagination [itemStart]="itemStart" 
+                                [itemEnd]="itemEnd"
+                                [page]="page" 
+                                [count]="count"
+                                (pageOutPut)="handlePageChange($event)" 
+                                (pageSizeOutPut)="handlePageSizeChange($event)">
+                    </basic-pagination>
+                    <!-- basic-pagination -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

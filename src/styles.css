@@ -1,0 +1,128 @@
+/* You can add global styles to this file, and also import other style files */
+
+@font-face {
+    font-family: 'Prompt';
+    src: url('assets/font/thin/Prompt-Light.ttf') format('ttf'),
+        url('assets/font/thin/Prompt-Light.woff2') format('woff2'),
+        url('assets/font/thin/Prompt-Light.woff') format('woff');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+
+body {
+    /*font-family: Prompt !important;
+    font-weight: 800 !important;*/
+}
+
+.btn-edit{
+    color: #ffbc34;
+    cursor: pointer;
+}
+
+.btn-remove{
+    color: #ff0000;
+    cursor: pointer;
+}
+
+.btn-view{
+    color: #36bea6;
+    cursor: pointer;
+}
+
+.center{
+    text-align: center;
+}
+
+.star-required{
+    color: #ff0000;
+}
+
+.warnnig-remove-icon{
+    font-size: 30px;
+}
+
+.warnnig-remove-text{
+    font-size: 20px;
+}
+
+.remove-modal-bg-content{
+    background: #f62d51;
+    color: #fff;
+}
+.modal-header-add{
+    background: #36bea6;
+    color: #fff;
+}
+
+.modal-header-edit{
+    background: #fb8c00;
+    color: #fff;
+}
+
+.modal-header-view{
+    background: #36bea6;
+    color: #fff;
+}
+
+.card-header-cover-table{
+    /*background: #e2e2e2 !important;*/
+    /*color: #414755 !important;*/
+}
+
+.table th, .table td {
+    padding: 0.5rem !important;
+    vertical-align: top;
+    border-top: 1px solid #e9ecef;
+}
+
+.oc-border {
+    border: 1px solid #36bea6 !important;
+}
+ 
+.oc-background {
+    background-color: #36bea6 !important;
+}
+ 
+.oc-name {
+    font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+    white-space: nowrap;
+    color: #fff !important;
+}
+ 
+.oc-designation {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-style: italic;
+    white-space: nowrap;
+}
+
+.custom-legend-header{
+    font-size: 14px;
+    font-weight: bold;
+    color: #2962ff;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+input {
+    border-radius: 5px !important;
+}
+select {
+    border-radius: 5px !important;
+}
+
+textarea {
+    border-radius: 5px !important;
+}
+
+#main-wrapper[data-layout="vertical"] .left-sidebar[data-sidebarbg="skin5"], #main-wrapper[data-layout="vertical"] .left-sidebar[data-sidebarbg="skin5"] ul, #main-wrapper[data-layout="horizontal"] .left-sidebar[data-sidebarbg="skin5"], #main-wrapper[data-layout="horizontal"] .left-sidebar[data-sidebarbg="skin5"] ul {
+    background: #2c3e50 !important;
+}
+
+.sidebar-nav ul .sidebar-item .first-level .sidebar-item .sidebar-link {
+    background: #34495e !important;
+}
+
+#main-wrapper[data-layout="vertical"] .topbar .top-navbar .navbar-header[data-logobg="skin5"], #main-wrapper[data-layout="horizontal"] .topbar .top-navbar .navbar-header[data-logobg="skin5"] {
+    background: #2c3e50 !important;
+}

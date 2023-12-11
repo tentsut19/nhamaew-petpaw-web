@@ -1,0 +1,108 @@
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "small" color = "#fff" type = "line-scale-party" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
+
+<div class="page-breadcrumb">
+    <div class="row">
+        <div class="col-5 align-self-center">
+            <h4 class="page-title">Intents Detail</h4>
+            <!-- <div class="d-flex align-items-center">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">กิจกรรม</li>
+                    </ol>
+                </nav>
+            </div> -->
+        </div>
+        <!-- <div class="col-7 align-self-center">
+            <div class="d-flex no-block justify-content-end align-items-center">
+                <button type="button" class="btn btn-success" 
+                data-toggle="modal" data-target="#modal-activity-add" *ngIf="perm[12].pinsert == true"><i class="fa fa-plus"></i> เพิ่มกิจกรรม</button>
+            </div>
+        </div> -->
+    </div>
+</div>
+<br />
+<div class="container-fluid">
+    <app-scroll-to-top></app-scroll-to-top>
+    <div class="card-body">
+        <div class="row">  
+          <div class="col-sm-12 col-md-10">
+            <label>Intents name </label>
+            <div class="form-group">
+                <input type="text" [(ngModel)]="intents.name" [ngModelOptions]="{standalone: true}" class="form-control" disabled>
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-2">
+            <label>Status </label>
+            <select class="form-control" [(ngModel)]="intents.status">
+                <option value="waiting verify">waiting verify</option>
+                <option value="verifying">verifying</option>
+                <option value="verified">verified</option>
+            </select>
+          </div>
+        </div>
+        <div class="row">  
+            <div class="col-md-12">
+              <fieldset class="border p-2">
+                <legend  class="w-auto legend-header" style="text-align: left;color: #1ab196;"> User Expression</legend>
+                <!-- <div class="row">
+                  <div class="col-sm-12 col-md-11">
+                      <textarea [(ngModel)]="userExpressionName" [ngModelOptions]="{standalone: true}" placeholder="Add user Expression" class="form-control" rows="3"></textarea>
+                  </div>
+                  <div class="col-sm-12 col-md-1">
+                      <button type="button" class="btn btn-rounded btn-info" (click)="validateAddUserExpressionList()">
+                          เพิ่ม
+                      </button>
+                  </div>
+                </div> -->
+                <hr>
+                <div class="row" *ngFor="let item of intents.userExpressionList; index as i">
+                  <div class="col-sm-12 col-md-12">
+                      <div class="form-group">
+                        <textarea [(ngModel)]="item.name" [ngModelOptions]="{standalone: true}" placeholder="Add user Expression" class="form-control" rows="3" disabled></textarea>
+                      </div>
+                  </div>
+                  <!-- <div class="col-sm-12 col-md-1">
+                      <button type="button" class="btn btn-rounded btn-danger" (click)="removeUserExpressionList(i)">
+                          ลบ
+                      </button>
+                  </div> -->
+                </div>
+              </fieldset>
+            </div>     
+        </div>
+        <div class="row">  
+          <div class="col-md-12">
+            <fieldset class="border p-2">
+              <legend  class="w-auto legend-header" style="text-align: left;color: #1ab196;"> Responses</legend>
+              <!-- <div class="row">
+                <div class="col-sm-12 col-md-11">
+                    <textarea [(ngModel)]="userResponseName" [ngModelOptions]="{standalone: true}" placeholder="Add responses" class="form-control" rows="3"></textarea>
+                </div>
+                <div class="col-sm-12 col-md-1">
+                    <button type="button" class="btn btn-rounded btn-info" (click)="addUserResponseList()">
+                        เพิ่ม
+                    </button>
+                </div>
+              </div> -->
+              <hr>
+              <div class="row" *ngFor="let item of intents.userResponseList; index as i">
+                <div class="col-sm-12 col-md-12">
+                    <div class="form-group">
+                      <textarea [(ngModel)]="item.name" [ngModelOptions]="{standalone: true}" placeholder="Add responses" class="form-control" rows="5"></textarea>
+                    </div>
+                </div>
+                <!-- <div class="col-sm-12 col-md-1">
+                    <button type="button" class="btn btn-rounded btn-danger" (click)="removeUserResponseList(i)">
+                        ลบ
+                    </button>
+                </div> -->
+              </div>
+            </fieldset>
+          </div>     
+        </div>
+    </div>
+    <div class="card-footer" style="text-align: center;">
+        <button type="button" class="btn btn-rounded btn-success" (click)="submit()">บันทึก</button>
+    </div>
+</div>

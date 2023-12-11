@@ -1,0 +1,15 @@
+@font-face {
+    font-family: 'Serithai';
+    src: url('/assets/font/serithai/Serithai-Regular.woff2') format('woff2'),
+        url('/assets/font/serithai/Serithai-Regular.woff') format('woff'),
+        url('/assets/font/serithai/Serithai-Regular.ttf') format('ttf');
+    font-weight: 100;
+    font-size: 16px;
+    font-style: normal;
+}
+
+/**{
+    font-family: Serithai !important;
+}*/
+
+ 

@@ -1,0 +1,164 @@
+[
+    {
+      "code": "002",
+      "abbrev_name": "BBL",
+      "th_name": "ธนาคารกรุงเทพ",
+      "en_name": "BANGKOK BANK"
+    },
+    {
+      "code": "004",
+      "abbrev_name": "KBNK",
+      "th_name": "ธนาคารกสิกรไทย",
+      "en_name": "KASIKORNBANK"
+    },
+    {
+      "code": "006",
+      "abbrev_name": "KTB",
+      "th_name": "ธนาคารกรุงไทย",
+      "en_name": "KRUNG THAI BANK"
+    },
+    {
+      "code": "011",
+      "abbrev_name": "TTB",
+      "th_name": "ธนาคารทหารไทยธนชาต",
+      "en_name": "TMBThanachart Bank"
+    },
+    {
+      "code": "014",
+      "abbrev_name": "SCB",
+      "th_name": "ธนาคารไทยพาณิชย์",
+      "en_name": "SIAM COMMERCIAL BANK"
+    },
+    {
+      "code": "017",
+      "abbrev_name": "CITI",
+      "th_name": "ธนาคารซิตี้แบงก์ เอ็น.เอ.",
+      "en_name": "CITIBANK, N.A."
+    },
+    {
+      "code": "018",
+      "abbrev_name": "SMBC",
+      "th_name": "ธนาคารซูมิโตโม มิตซุย",
+      "en_name": "SUMITOMO MITSUI BANK (THAI)"
+    },
+    {
+      "code": "020",
+      "abbrev_name": "SCBT",
+      "th_name": "ธนาคารสแตนดาร์ดชาร์เตอร์ด (ไทย)",
+      "en_name": "STANDARD CHARTERED BANK (THAI)"
+    },
+    {
+      "code": "022",
+      "abbrev_name": "CMBT",
+      "th_name": "ธนาคารซีไอเอ็มบี ไทย ",
+      "en_name": "CIMB THAI BANK"
+    },
+    {
+      "code": "024",
+      "abbrev_name": "UOBT",
+      "th_name": "ธนาคารยูโอบี",
+      "en_name": "UNITED OVERSEAS BANK (THAI)"
+    },
+    {
+      "code": "025",
+      "abbrev_name": "BAY",
+      "th_name": "ธนาคารกรุงศรีอยุธยา",
+      "en_name": "BANK OF AYUDHYA"
+    },
+    {
+      "code": "029",
+      "abbrev_name": "IOBA",
+      "th_name": "ธนาคารอินเดียนโอเวอร์ซีส์",
+      "en_name": "INDIAN OVERSEAS BANK"
+    },
+    {
+      "code": "030",
+      "abbrev_name": "GSB",
+      "th_name": "ธนาคารออมสิน",
+      "en_name": "GOVERNMENT SAVINGS BANK"
+    },
+    {
+      "code": "031",
+      "abbrev_name": "HSBC",
+      "th_name": "ธนาคารเอชเอสบีซี",
+      "en_name": "HSBC BANK"
+    },
+    {
+      "code": "032",
+      "abbrev_name": "DBBK",
+      "th_name": "ธนาคารดอยซ์แบงก์ เอจี",
+      "en_name": "DEUTSCHE BANK AG, BANGKOK BRANCH"
+    },
+    {
+      "code": "033",
+      "abbrev_name": "GHB",
+      "th_name": "ธนาคารอาคารสงเคราะห์",
+      "en_name": "GOVERNMENT HOUSING BANK"
+    },
+    {
+      "code": "034",
+      "abbrev_name": "BAAC",
+      "th_name": "ธนาคารเพื่อการเกษตรและสหกรณ์การเกษตร",
+      "en_name": "BANK FOR AGRICULTURE AND AGRICULTURAL"
+    },
+    {
+      "code": "039",
+      "abbrev_name": "MHCB",
+      "th_name": "ธนาคารมิซูโฮ",
+      "en_name": "MIZUHO BANK"
+    },
+    {
+      "code": "045",
+      "abbrev_name": "BNPP",
+      "th_name": "ธนาคารบีเอ็นพี พารีบาส์",
+      "en_name": "BNP PARIBAS (THAI)"
+    },
+    {
+      "code": "052",
+      "abbrev_name": "BOC",
+      "th_name": "ธนาคารแห่งประเทศจีน (ไทย) จำกัด (มหาชน)",
+      "en_name": "Bank of China (Thai) Public Company Limited"
+    },
+    {
+      "code": "066",
+      "abbrev_name": "ISBT",
+      "th_name": "ธนาคารอิสลามแห่งประเทศไทย",
+      "en_name": "ISLAMIC BANK OF THAILAND"
+    },
+    {
+      "code": "067",
+      "abbrev_name": "TSCO",
+      "th_name": "ธนาคารทิสโก้",
+      "en_name": "TISCO BANK"
+    },
+    {
+      "code": "069",
+      "abbrev_name": "KKP",
+      "th_name": "ธนาคารเกียรตินาคินภัทร จำกัด (มหาชน)",
+      "en_name": "KIATNAKIN PHATRA BANK PUBLIC COMPANY LIMITED"
+    },
+    {
+      "code": "070",
+      "abbrev_name": "ICBC",
+      "th_name": "ธนาคารไอซีบีซี (ไทย)",
+      "en_name": "ICBC BANK"
+    },
+    {
+      "code": "071",
+      "abbrev_name": "TCRB",
+      "th_name": "ธนาคารไทยเครดิต เพื่อรายย่อย",
+      "en_name": "THAI CREDIT RETAIL BANK"
+    },
+    {
+      "code": "073",
+      "abbrev_name": "LHBA",
+      "th_name": "ธนาคารแลนด์ แอนด์ เฮ้าส์",
+      "en_name": "LH BANK"
+    },
+    {
+      "code": "079",
+      "abbrev_name": "ANZ",
+      "th_name": "ธนาคารเอเอ็นแซด (ไทย) จำกัด(มหาชน)",
+      "en_name": "ANZ BANK (THAI) PUBLIC COMPANY LIMITED"
+    }
+  ]
