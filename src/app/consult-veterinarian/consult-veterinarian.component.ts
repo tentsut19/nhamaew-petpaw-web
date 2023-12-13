@@ -27,6 +27,7 @@ export class ConsultVeterinarianComponent implements OnInit {
         'keyword': [''],
         'year': [''],
         'month': [''],
+        'genderCat': [''],
         'sterilization': [''],
         'vaccine': [''],
         'historyDrugAllergy': [''],
@@ -37,6 +38,7 @@ export class ConsultVeterinarianComponent implements OnInit {
         'ownerName': [''],
         'phoneNumber': [''],
         'email': [''],
+        'moreDetails': [''],
         'status': [''],
         'botMode': ['']
     });
@@ -188,6 +190,7 @@ export class ConsultVeterinarianComponent implements OnInit {
       keyword: data.keyword,
       year: data.year,
       month: data.month,
+      genderCat: data.genderCat,
       sterilization: data.sterilization,
       vaccine: data.vaccine,
       historyDrugAllergy: data.historyDrugAllergy,
@@ -198,6 +201,7 @@ export class ConsultVeterinarianComponent implements OnInit {
       ownerName: data.ownerName,
       phoneNumber: data.phoneNumber,
       email: data.email,
+      moreDetails: data.moreDetails,
       status: data.status,
       botMode: data.botMode
     });

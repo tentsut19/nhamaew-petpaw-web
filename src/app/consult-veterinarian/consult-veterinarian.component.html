@@ -173,6 +173,10 @@
                             <input type="text" class="form-control" formControlName="month" [readonly]="true">
                         </div>
                         <div class="form-group">
+                            <label class="control-label">เพศแมว</label>
+                            <input type="text" class="form-control" formControlName="genderCat" [readonly]="true">
+                        </div>
+                        <div class="form-group">
                             <label class="control-label">ทำหมัน</label>
                             <input type="text" class="form-control" formControlName="sterilization" [readonly]="true">
                         </div>
@@ -205,12 +209,16 @@
                             <input type="text" class="form-control" formControlName="ownerName" [readonly]="true">
                         </div>
                         <div class="form-group">
-                            <label class="control-label">เบอรโทรให้เราติดต่อกลับ</label>
+                            <label class="control-label">เบอรโทร</label>
                             <input type="text" class="form-control" formControlName="phoneNumber" [readonly]="true">
                         </div>
                         <div class="form-group">
-                            <label class="control-label">อีเมลให้เราติดต่อกลับ</label>
+                            <label class="control-label">อีเมล</label>
                             <input type="text" class="form-control" formControlName="email" [readonly]="true">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">รายละเอียดเพิ่มเติมจากสัตวแพทย์</label>
+                            <textarea rows="5" class="form-control" formControlName="moreDetails"></textarea>
                         </div>
                         <div class="form-group m-b-30">
                             <label for="exampleFormControlSelect1">สถานะ</label>
