@@ -64,6 +64,10 @@ export class CatBotService {
     return this.http.get<any>(environment.api_endpoint + '/cat-bot/intents/'+id,this.httpOptions);
   }
 
+  getIntentsVerifyById(id): Observable<any> {
+    return this.http.get<any>(environment.api_endpoint + '/cat-bot/intents-verify/'+id,this.httpOptions);
+  }
+
   addIntents(req): Observable<any> {
     return this.http.post<any>(environment.api_endpoint + '/cat-bot/add/intents', JSON.stringify(req),this.httpOptions);
   }
@@ -74,6 +78,10 @@ export class CatBotService {
 
   putIntentsDetail(req): Observable<any> {
     return this.http.put<any>(environment.api_endpoint + '/cat-bot/update/intents-detail', JSON.stringify(req),this.httpOptions);
+  }
+
+  putIntentsVerifyDetail(req): Observable<any> {
+    return this.http.put<any>(environment.api_endpoint + '/cat-bot/update/intents-verify-detail', JSON.stringify(req),this.httpOptions);
   }
 
   validateUserExpression(req): Observable<any> {

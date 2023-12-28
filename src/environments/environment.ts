@@ -6,8 +6,8 @@ export const environment = {
   production: false,
   api_endpoint: 'http://localhost:5000/api/v1',
   api_domain: 'http://localhost:5000/',
-  // api_endpoint: 'http://noc.easynet.co.th:8092/api/v1',
-  // api_domain: 'http://noc.easynet.co.th:8092'
+  // api_endpoint: 'https://cat-bot-api.com/api/v1',
+  // api_domain: 'https://cat-bot-api.com/',
 };
 
 /*

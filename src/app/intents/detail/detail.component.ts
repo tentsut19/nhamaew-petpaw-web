@@ -37,7 +37,7 @@ export class IntentsDetailComponent {
     getIntents() {
       $("#intents_table").DataTable().clear().destroy();
       this.spinner.show();
-      this.catBotService.getIntentsById(this.intentsId).subscribe(resp => {
+      this.catBotService.getIntentsVerifyById(this.intentsId).subscribe(resp => {
         console.log(resp);
         this.intents = resp
         setTimeout(() => {
@@ -123,7 +123,7 @@ export class IntentsDetailComponent {
 
     submit(){
       this.spinner.show()
-      this.catBotService.putIntentsDetail(this.intents).subscribe(resp => {
+      this.catBotService.putIntentsVerifyDetail(this.intents).subscribe(resp => {
         this.spinner.hide()
         Swal.fire({
           // position: 'top-end',

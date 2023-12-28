@@ -50,3 +50,5 @@ docker run -v ./imposters:/imposters -p 8080:8080 -p 2525:2525 -d jkris/mounteba
 
 https://leovo2708.github.io/ngx-treeview/#/components
 
+firebase deploy
+

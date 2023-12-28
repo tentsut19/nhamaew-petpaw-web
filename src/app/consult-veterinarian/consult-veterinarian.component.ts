@@ -23,6 +23,7 @@ export class ConsultVeterinarianComponent implements OnInit {
     this.addForm = fb.group({
         'id': [''],
         'nameCat': [''],
+        'weightRangeName': [''],
         'breeds': [''],
         'keyword': [''],
         'year': [''],
@@ -183,9 +184,22 @@ export class ConsultVeterinarianComponent implements OnInit {
   }
 
   openDialogDetail(data){
+    var weightRangeName = "";
+    if(data.weightRange == "1.2-"){
+      weightRangeName = "น้อยกว่า 1.2 kg";
+    }else if(data.weightRange == "1.2-2.8"){
+      weightRangeName = "1.2-2.8 kg";
+    }else if(data.weightRange == "2.8-6.5"){
+      weightRangeName = "2.8-6.5 kg";
+    }else if(data.weightRange == "6.5-12.5"){
+      weightRangeName = "6.5-12.5 kg";
+    }else if(data.weightRange == "12.5+"){
+      weightRangeName = "มากกว่า 12.5 kg";
+    }
     this.addForm.patchValue({
       id: data.id,
       nameCat: data.nameCat,
+      weightRangeName: weightRangeName,
       breeds: data.breeds,
       keyword: data.keyword,
       year: data.year,
