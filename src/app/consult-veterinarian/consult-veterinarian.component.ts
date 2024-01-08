@@ -39,7 +39,10 @@ export class ConsultVeterinarianComponent implements OnInit {
         'ownerName': [''],
         'phoneNumber': [''],
         'email': [''],
+        'followUpDate': [''],
         'moreDetails': [''],
+        'customerGroup': [''],
+        'symptomLevel': [''],
         'status': [''],
         'botMode': ['']
     });
@@ -138,8 +141,59 @@ export class ConsultVeterinarianComponent implements OnInit {
     this.isShowStartWork = !this.isShowStartWork;
   }
 
+  optionsSingleDate: any = {
+    locale: { format: 'DD-MM-YYYY' },
+    alwaysShowCalendars: false,
+    singleDatePicker: true,
+  };
+  selectedFollowUpDate(value: any, datepicker?: any) {
+    console.log(value);
+    console.log(datepicker);
+    this.addForm.patchValue({
+      followUpDate: this.convertDateToStrngDDMMYYYY(value.start._d),
+    });
+  }
+
+  convertDateToStrngDDMMYYYY(date){
+    console.log(date);
+    let dateCurrent = new Date();
+    if(date){
+      dateCurrent = new Date(date);
+    }
+    
+    var dd = dateCurrent.getDate();
+    var mm = dateCurrent.getMonth() + 1; //January is 0!
+    var yyyy = dateCurrent.getFullYear();
+
+    let month = "";
+    let day = "";
+    if (dd < 10) {
+      day = "0" + dd;
+    } else {
+      day = "" + dd;
+    }
+    if (mm < 10) {
+      month = "0" + mm;
+    } else {
+      month = "" + mm;
+    }
+
+    var startTime =
+        (dateCurrent.getHours() < 10
+        ? "0" + dateCurrent.getHours()
+        : dateCurrent.getHours()) +
+        "." +
+        (dateCurrent.getMinutes() < 10
+        ? "0" + dateCurrent.getMinutes()
+        : dateCurrent.getMinutes());
+
+    return day + "-" + month + "-" +yyyy;
+  }
+
   input;
   status = '';
+  customerGroup = '';
+  symptomLevel = '';
   tagId = '';
   itemStart;
   itemEnd;
@@ -156,6 +210,14 @@ export class ConsultVeterinarianComponent implements OnInit {
 
     if (this.status) {
       params[`status`] = this.status;
+    }
+
+    if (this.customerGroup) {
+      params[`customerGroup`] = this.customerGroup;
+    }
+
+    if (this.symptomLevel) {
+      params[`symptomLevel`] = this.symptomLevel;
     }
     
     if (this.tagId) {
@@ -215,7 +277,10 @@ export class ConsultVeterinarianComponent implements OnInit {
       ownerName: data.ownerName,
       phoneNumber: data.phoneNumber,
       email: data.email,
+      followUpDate: data.followUpDate,
       moreDetails: data.moreDetails,
+      customerGroup: data.customerGroup,
+      symptomLevel: data.symptomLevel,
       status: data.status,
       botMode: data.botMode
     });

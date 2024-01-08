@@ -38,7 +38,7 @@
                 </div>
                 <div class="card-body">
                     <div class="row"> 
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                           <div class="form-group">
                             <label>ค้นหาด้วย เลขที่,ชื่อน้องแมว,สายพันธุ์,ชื่อไลน์</label>
                             <input class="form-control" type="text" name="input" [(ngModel)]="input" [ngModelOptions]="{standalone: true}" />
@@ -57,6 +57,29 @@
                         </div>
                         <div class="col-md-2">
                           <div class="form-group">
+                            <label>กลุ่มลูกค้า</label>
+                            <select class="form-control" [(ngModel)]="customerGroup">
+                                <option value="">all</option>
+                                <option value="Elite">Elite</option>
+                                <option value="PetMommy">PetMommy</option>
+                                <option value="PetOwner">PetOwner</option>
+                                <option value="All-New">All-New</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-md-2">
+                          <div class="form-group">
+                            <label>ระดับอาการ</label>
+                            <select class="form-control" [(ngModel)]="symptomLevel">
+                                <option value="">all</option>
+                                <option value="Green">Green</option>
+                                <option value="Yellow">Yellow</option>
+                                <option value="Red">Red</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-md-2">
+                          <div class="form-group">
                             <label>สถานะ</label>
                             <select class="form-control" [(ngModel)]="status">
                                 <option value="">all</option>
@@ -66,7 +89,7 @@
                             </select>
                           </div>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-1">
                           <button type="button" class="btn btn-info" (click)="searchConsultVeterinarianByCriteriaPage()" style="margin-top: 30px;"><i class="fa fa-search"></i> Search</button>
                         </div>
                     </div>
@@ -92,6 +115,8 @@
                                     <th style="width: 10%;" class="center">ชื่อน้องแมว</th>
                                     <th style="width: 10%;" class="center">สายพันธุ์</th>
                                     <th style="width: 20%;" class="center">อาการเบื้องต้น</th>
+                                    <th style="width: 10%;" class="center">กลุ่มลูกค้า</th>
+                                    <th style="width: 10%;" class="center">ระดับอาการ</th>
                                     <th style="width: 10%;" class="center">สถานะ</th>
                                     <th style="width: 10%;" class="center">โหมด</th>
                                     <th style="width: 10%;" class="center">วันที่ทำรายการ</th>
@@ -110,6 +135,17 @@
                                     <td style="width: 10%;" class="center">{{item.breeds}}</td>
                                     <td style="width: 20%;" class="center">
                                         <textarea rows="5" class="form-control" [(ngModel)]="item.initialSymptoms" [ngModelOptions]="{standalone: true}" [readonly]="true"></textarea>
+                                    </td>
+                                    <td style="width: 10%;" class="center">
+                                        <b *ngIf="item.customerGroup == 'Elite' " style="color: orange;">{{item.customerGroup}}</b>
+                                        <b *ngIf="item.customerGroup == 'PetMommy' " style="color: green;">{{item.customerGroup}}</b>
+                                        <b *ngIf="item.customerGroup == 'PetOwner' " style="color: blue;">{{item.customerGroup}}</b>
+                                        <b *ngIf="item.customerGroup == 'All-New' " style="color: black;">{{item.customerGroup}}</b>
+                                    </td>
+                                    <td style="width: 10%;" class="center">
+                                        <b *ngIf="item.symptomLevel == 'Red' " style="color: red;">{{item.symptomLevel}}</b>
+                                        <b *ngIf="item.symptomLevel == 'Yellow' " style="color: yellowgreen;">{{item.symptomLevel}}</b>
+                                        <b *ngIf="item.symptomLevel == 'Green' " style="color: green;">{{item.symptomLevel}}</b>
                                     </td>
                                     <td style="width: 10%;" class="center">
                                         <b *ngIf="item.status == 'W' " style="color: orange;">{{item.statusDisplay}}</b>
@@ -223,6 +259,28 @@
                         <div class="form-group">
                             <label class="control-label">รายละเอียดเพิ่มเติมจากสัตวแพทย์</label>
                             <textarea rows="5" class="form-control" formControlName="moreDetails"></textarea>
+                        </div>
+                        <div class="form-group m-b-30">
+                            <label for="exampleFormControlSelect1">กลุ่มลูกค้า</label>
+                            <select class="form-control" formControlName="customerGroup">
+                                <option value="Elite">Elite</option>
+                                <option value="PetMommy">PetMommy</option>
+                                <option value="PetOwner">PetOwner</option>
+                                <option value="All-New">All-New</option>
+                            </select>
+                        </div>
+                        <div class="form-group m-b-30">
+                            <label for="exampleFormControlSelect1">ระดับอาการ</label>
+                            <select class="form-control" formControlName="symptomLevel">
+                                <option value="Green">Green</option>
+                                <option value="Yellow">Yellow</option>
+                                <option value="Red">Red</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">follow up</label>
+                            <input type="text" class="form-control" formControlName="followUpDate" 
+                            daterangepicker [options]="optionsSingleDate" (selected)="selectedFollowUpDate($event, daterange)">
                         </div>
                         <div class="form-group m-b-30">
                             <label for="exampleFormControlSelect1">สถานะ</label>
