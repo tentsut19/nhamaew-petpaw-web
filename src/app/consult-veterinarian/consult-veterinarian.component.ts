@@ -40,6 +40,8 @@ export class ConsultVeterinarianComponent implements OnInit {
         'phoneNumber': [''],
         'email': [''],
         'followUpDate': [''],
+        'followUpStartTime': [''],
+        'followUpEndTime': [''],
         'moreDetails': [''],
         'customerGroup': [''],
         'symptomLevel': [''],
@@ -278,6 +280,8 @@ export class ConsultVeterinarianComponent implements OnInit {
       phoneNumber: data.phoneNumber,
       email: data.email,
       followUpDate: data.followUpDate,
+      followUpStartTime: data.followUpStartTime,
+      followUpEndTime: data.followUpEndTime,
       moreDetails: data.moreDetails,
       customerGroup: data.customerGroup,
       symptomLevel: data.symptomLevel,
@@ -287,11 +291,31 @@ export class ConsultVeterinarianComponent implements OnInit {
     $('#modal-detail').modal('show');
   }
 
+  timeMask = [/\d/, /\d/, ':', /\d/, /\d/];
+  validateHhMm(inputField) {
+    let isValid = /^([0-1]?[0-9]|2[0-3]):([0-5][0-9])(:[0-5][0-9])?$/.test(inputField);
+    return isValid;
+  }
+
+  followUpEndTimeIsValid = false;
+  followUpStartTimeIsValid = false;
   submitted_add = false;
   patchStatusAndBotMode(){
     this.submitted_add = true;
     if(this.addForm.invalid){
       return;
+    }
+    if(this.addForm.value.followUpStartTime && !this.validateHhMm(this.addForm.value.followUpStartTime)){
+      this.followUpStartTimeIsValid = true;
+      return;
+    }else{
+      this.followUpStartTimeIsValid = false;
+    }
+    if(this.addForm.value.followUpEndTime && !this.validateHhMm(this.addForm.value.followUpEndTime)){
+      this.followUpEndTimeIsValid = true;
+      return;
+    }else{
+      this.followUpEndTimeIsValid = false;
     }
     this.spinner.show();
     this.catBotService.patchStatusAndBotMode(this.addForm.value).subscribe(resp => {

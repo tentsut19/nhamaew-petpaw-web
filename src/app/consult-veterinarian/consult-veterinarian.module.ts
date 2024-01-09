@@ -13,6 +13,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { NgxSpinnerService } from "ngx-spinner";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
 
+import { TextMaskModule } from 'angular2-text-mask';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -23,6 +25,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     Daterangepicker,
     NgxSpinnerModule,
     BrowserAnimationsModule,
+    TextMaskModule,
     FormsModule
   ],
   declarations: [ConsultVeterinarianComponent],

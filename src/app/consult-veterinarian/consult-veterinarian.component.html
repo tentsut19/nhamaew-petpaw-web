@@ -80,7 +80,7 @@
                         </div>
                         <div class="col-md-2">
                           <div class="form-group">
-                            <label>สถานะ</label>
+                            <label>สถานะเคส</label>
                             <select class="form-control" [(ngModel)]="status">
                                 <option value="">all</option>
                                 <option value="W">รอรับเรื่อง</option>
@@ -115,9 +115,9 @@
                                     <th style="width: 10%;" class="center">ชื่อน้องแมว</th>
                                     <th style="width: 10%;" class="center">สายพันธุ์</th>
                                     <th style="width: 20%;" class="center">อาการเบื้องต้น</th>
+                                    <th style="width: 10%;" class="center">สถานะเคส</th>
                                     <th style="width: 10%;" class="center">กลุ่มลูกค้า</th>
                                     <th style="width: 10%;" class="center">ระดับอาการ</th>
-                                    <th style="width: 10%;" class="center">สถานะ</th>
                                     <th style="width: 10%;" class="center">โหมด</th>
                                     <th style="width: 10%;" class="center">วันที่ทำรายการ</th>
                                     <th style="width: 5%;" class="center"></th>
@@ -137,6 +137,11 @@
                                         <textarea rows="5" class="form-control" [(ngModel)]="item.initialSymptoms" [ngModelOptions]="{standalone: true}" [readonly]="true"></textarea>
                                     </td>
                                     <td style="width: 10%;" class="center">
+                                        <b *ngIf="item.status == 'W' " style="color: orange;">{{item.statusDisplay}}</b>
+                                        <b *ngIf="item.status == 'R' " style="color: blue;">{{item.statusDisplay}}</b>
+                                        <b *ngIf="item.status == 'S' " style="color: green;">{{item.statusDisplay}}</b>
+                                    </td>
+                                    <td style="width: 10%;" class="center">
                                         <b *ngIf="item.customerGroup == 'Elite' " style="color: orange;">{{item.customerGroup}}</b>
                                         <b *ngIf="item.customerGroup == 'PetMommy' " style="color: green;">{{item.customerGroup}}</b>
                                         <b *ngIf="item.customerGroup == 'PetOwner' " style="color: blue;">{{item.customerGroup}}</b>
@@ -146,11 +151,6 @@
                                         <b *ngIf="item.symptomLevel == 'Red' " style="color: red;">{{item.symptomLevel}}</b>
                                         <b *ngIf="item.symptomLevel == 'Yellow' " style="color: yellowgreen;">{{item.symptomLevel}}</b>
                                         <b *ngIf="item.symptomLevel == 'Green' " style="color: green;">{{item.symptomLevel}}</b>
-                                    </td>
-                                    <td style="width: 10%;" class="center">
-                                        <b *ngIf="item.status == 'W' " style="color: orange;">{{item.statusDisplay}}</b>
-                                        <b *ngIf="item.status == 'R' " style="color: blue;">{{item.statusDisplay}}</b>
-                                        <b *ngIf="item.status == 'S' " style="color: green;">{{item.statusDisplay}}</b>
                                     </td>
                                     <td style="width: 10%;" class="center">
                                         <b *ngIf="item.botMode == 'BOT' " style="color: green;">{{item.botModeDisplay}}</b>
@@ -277,20 +277,30 @@
                                 <option value="Red">Red</option>
                             </select>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group m-b-30">
                             <label class="control-label">follow up</label>
                             <input type="text" class="form-control" formControlName="followUpDate" 
                             daterangepicker [options]="optionsSingleDate" (selected)="selectedFollowUpDate($event, daterange)">
                         </div>
                         <div class="form-group m-b-30">
-                            <label for="exampleFormControlSelect1">สถานะ</label>
+                            <label class="control-label">follow up start time</label>
+                            <input type="text" class="form-control" formControlName="followUpStartTime" [textMask]="{mask: timeMask}"  placeholder="00:00">
+                            <span style="color: red;" *ngIf="followUpStartTimeIsValid">รูปแบบเวลาไม่ถูกต้อง (HH:mm) 24hr. ตัวอย่าง => 12:35</span>
+                        </div>
+                        <div class="form-group m-b-30">
+                            <label class="control-label">follow up end time</label>
+                            <input type="text" class="form-control" formControlName="followUpEndTime" [textMask]="{mask: timeMask}"  placeholder="00:00">
+                            <span style="color: red;" *ngIf="followUpEndTimeIsValid">รูปแบบเวลาไม่ถูกต้อง (HH:mm) 24hr. ตัวอย่าง => 12:35</span>
+                        </div>
+                        <div class="form-group m-b-30">
+                            <label for="exampleFormControlSelect1">สถานะเคส</label>
                             <select class="form-control" formControlName="status" [ngClass]="{ 'is-invalid': submitted_add &amp;&amp; addForm.controls.status.errors }">
                                 <option value="W">รอรับเรื่อง</option>
                                 <option value="R">รับเรื่อง</option>
                                 <option value="S">ส่งงานต่อ</option>
                             </select>
                             <div *ngIf="submitted_add &amp;&amp; addForm.controls.status.errors" class="text-danger">
-                              <div *ngIf="addForm.controls.status.errors.required">โปรดระบุ สถานะ</div>
+                              <div *ngIf="addForm.controls.status.errors.required">โปรดระบุ สถานะเคส</div>
                           </div>
                         </div>
                         <div class="form-group m-b-30">
