@@ -79,6 +79,13 @@ export class ConsultVeterinarianComponent implements OnInit {
 
       if(resp.responseList){
         this.responseList = resp.responseList;
+
+        this.responseList.forEach(response => {
+          response.symptomLevelStyleBackground = {
+            "background-color": response.symptomLevel,
+          }
+        })
+
         this.count = resp.pagination.total_record;
         this.itemStart = resp.pagination.record_start;
         this.itemEnd = resp.pagination.record_end;

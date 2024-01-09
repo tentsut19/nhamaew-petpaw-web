@@ -147,10 +147,8 @@
                                         <b *ngIf="item.customerGroup == 'PetOwner' " style="color: blue;">{{item.customerGroup}}</b>
                                         <b *ngIf="item.customerGroup == 'All-New' " style="color: black;">{{item.customerGroup}}</b>
                                     </td>
-                                    <td style="width: 10%;" class="center">
-                                        <b *ngIf="item.symptomLevel == 'Red' " style="color: red;">{{item.symptomLevel}}</b>
-                                        <b *ngIf="item.symptomLevel == 'Yellow' " style="color: yellowgreen;">{{item.symptomLevel}}</b>
-                                        <b *ngIf="item.symptomLevel == 'Green' " style="color: green;">{{item.symptomLevel}}</b>
+                                    <td style="width: 10%;" class="center" [ngStyle]="item.symptomLevelStyleBackground" >    
+                                        <b>{{item.symptomLevel}}</b>
                                     </td>
                                     <td style="width: 10%;" class="center">
                                         <b *ngIf="item.botMode == 'BOT' " style="color: green;">{{item.botModeDisplay}}</b>
