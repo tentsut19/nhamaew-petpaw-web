@@ -56,6 +56,17 @@
                           </div>
                         </div>
                         <div class="col-md-2">
+                            <label>follow up</label>
+                            <div class="input-group date">
+                              <input type="text" class="form-control" [disabled]="!isShowFollowUp"
+                              daterangepicker [options]="optionsDate" (selected)="selectedFollowUp($event, daterange)">
+                              <span class="input-group-addon input-group-text" style="cursor: pointer;" (click)="showFollowUp()">
+                                  <i *ngIf="!isShowFollowUp" class="fa fa-calendar"></i>
+                                  <i *ngIf="isShowFollowUp" class="fa fa-ban"></i>
+                              </span>
+                            </div>
+                          </div>
+                        <div class="col-md-1">
                           <div class="form-group">
                             <label>กลุ่มลูกค้า</label>
                             <select class="form-control" [(ngModel)]="customerGroup">
@@ -67,7 +78,7 @@
                             </select>
                           </div>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-1">
                           <div class="form-group">
                             <label>ระดับอาการ</label>
                             <select class="form-control" [(ngModel)]="symptomLevel">
@@ -119,6 +130,7 @@
                                     <th style="width: 10%;" class="center">กลุ่มลูกค้า</th>
                                     <th style="width: 10%;" class="center">ระดับอาการ</th>
                                     <th style="width: 10%;" class="center">โหมด</th>
+                                    <th style="width: 10%;" class="center">follow up</th>
                                     <th style="width: 10%;" class="center">วันที่ทำรายการ</th>
                                     <th style="width: 5%;" class="center"></th>
                                 </tr>
@@ -153,6 +165,10 @@
                                     <td style="width: 10%;" class="center">
                                         <b *ngIf="item.botMode == 'BOT' " style="color: green;">{{item.botModeDisplay}}</b>
                                         <b *ngIf="item.botMode == 'MANUAL' " style="color: orange;">{{item.botModeDisplay}}</b>
+                                    </td>
+                                    <td style="width: 10%;" class="center">
+                                        {{item.followUpAt | date: 'dd/MM/yyyy'}}
+                                        <span>{{item.followUpStartTime}}-{{item.followUpEndTime}}</span>
                                     </td>
                                     <td style="width: 10%;" class="center">{{item.createdAt | date: 'dd/MM/yyyy HH:mm:ss'}}</td>
                                     <td style="width: 5%;" class="center">

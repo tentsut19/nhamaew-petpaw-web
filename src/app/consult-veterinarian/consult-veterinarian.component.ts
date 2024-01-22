@@ -150,6 +150,27 @@ export class ConsultVeterinarianComponent implements OnInit {
     this.isShowStartWork = !this.isShowStartWork;
   }
 
+  isShowFollowUp = false;
+  showFollowUp(){
+    this.isShowFollowUp = !this.isShowFollowUp;
+  }
+
+  startFollowUpDate;
+  endFollowUpDate;
+  selectedFollowUp(value: any, datepicker?: any) {
+    // this is the date  selected
+    console.log(value);
+ 
+    // any object can be passed to the selected event and it will be passed back here
+    datepicker.start = value.start;
+    datepicker.end = value.end;
+    this.startFollowUpDate = value.start._d;
+    this.endFollowUpDate = value.end._d;
+
+    console.log(this.startDate);
+    console.log(this.endDate);
+  }
+
   optionsSingleDate: any = {
     locale: { format: 'DD-MM-YYYY' },
     alwaysShowCalendars: false,
@@ -239,6 +260,15 @@ export class ConsultVeterinarianComponent implements OnInit {
       }
       if (this.endDate) {
         params[`endDate`] = this.endDate;
+      }
+    }
+
+    if (this.isShowFollowUp) {
+      if (this.startFollowUpDate) {
+        params[`startFollowUpDate`] = this.startFollowUpDate;
+      }
+      if (this.endFollowUpDate) {
+        params[`endFollowUpDate`] = this.endFollowUpDate;
       }
     }
 
