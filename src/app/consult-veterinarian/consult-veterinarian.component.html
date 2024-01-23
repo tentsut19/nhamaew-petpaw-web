@@ -293,7 +293,7 @@
                         </div>
                         <div class="form-group m-b-30">
                             <label class="control-label">follow up</label>
-                            <input type="text" class="form-control" formControlName="followUpDate" 
+                            <input type="text" class="form-control" formControlName="followUpDate" (click)="setFollowUpDate()" 
                             daterangepicker [options]="optionsSingleDate" (selected)="selectedFollowUpDate($event, daterange)"
                             [ngClass]="{ 'is-invalid': followUpValid }">
                         </div>

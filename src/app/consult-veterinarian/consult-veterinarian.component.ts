@@ -183,6 +183,11 @@ export class ConsultVeterinarianComponent implements OnInit {
       followUpDate: this.convertDateToStrngDDMMYYYY(value.start._d),
     });
   }
+  setFollowUpDate(){
+    this.addForm.patchValue({
+      followUpDate: this.convertDateToStrngDDMMYYYY(new Date()),
+    });
+  }
 
   convertDateToStrngDDMMYYYY(date){
     console.log(date);
