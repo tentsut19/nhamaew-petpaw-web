@@ -363,6 +363,22 @@ export class ConsultVeterinarianComponent implements OnInit {
         return;
       }
     }
+    if(this.addForm.value.followUpStartTime){
+      if(!this.addForm.value.followUpDate || !this.addForm.value.followUpEndTime){
+        this.warningDialog('กรุณากรอกข้อมูลให้ครบ','กรอก follow up, follow up start time, follow up end time');
+        this.followUpValid = true;
+        return;
+      }
+    }
+    if(this.addForm.value.followUpEndTime){
+      if(!this.addForm.value.followUpStartTime || !this.addForm.value.followUpDate){
+        this.warningDialog('กรุณากรอกข้อมูลให้ครบ','กรอก follow up, follow up start time, follow up end time');
+        this.followUpValid = true;
+        return;
+      }
+    }
+
+
     console.log(this.addForm.value);
     this.spinner.show();
     this.catBotService.patchStatusAndBotMode(this.addForm.value).subscribe(resp => {
