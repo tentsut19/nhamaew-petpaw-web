@@ -294,16 +294,19 @@
                         <div class="form-group m-b-30">
                             <label class="control-label">follow up</label>
                             <input type="text" class="form-control" formControlName="followUpDate" 
-                            daterangepicker [options]="optionsSingleDate" (selected)="selectedFollowUpDate($event, daterange)">
+                            daterangepicker [options]="optionsSingleDate" (selected)="selectedFollowUpDate($event, daterange)"
+                            [ngClass]="{ 'is-invalid': followUpValid }">
                         </div>
                         <div class="form-group m-b-30">
                             <label class="control-label">follow up start time</label>
-                            <input type="text" class="form-control" formControlName="followUpStartTime" [textMask]="{mask: timeMask}"  placeholder="00:00">
+                            <input type="text" class="form-control" formControlName="followUpStartTime" [textMask]="{mask: timeMask}"  placeholder="00:00"
+                            [ngClass]="{ 'is-invalid': followUpValid }">
                             <span style="color: red;" *ngIf="followUpStartTimeIsValid">รูปแบบเวลาไม่ถูกต้อง (HH:mm) 24hr. ตัวอย่าง => 12:35</span>
                         </div>
                         <div class="form-group m-b-30">
                             <label class="control-label">follow up end time</label>
-                            <input type="text" class="form-control" formControlName="followUpEndTime" [textMask]="{mask: timeMask}"  placeholder="00:00">
+                            <input type="text" class="form-control" formControlName="followUpEndTime" [textMask]="{mask: timeMask}"  placeholder="00:00"
+                            [ngClass]="{ 'is-invalid': followUpValid }">
                             <span style="color: red;" *ngIf="followUpEndTimeIsValid">รูปแบบเวลาไม่ถูกต้อง (HH:mm) 24hr. ตัวอย่าง => 12:35</span>
                         </div>
                         <div class="form-group m-b-30">

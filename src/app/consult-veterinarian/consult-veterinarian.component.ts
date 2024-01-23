@@ -334,6 +334,7 @@ export class ConsultVeterinarianComponent implements OnInit {
     return isValid;
   }
 
+  followUpValid = false;
   followUpEndTimeIsValid = false;
   followUpStartTimeIsValid = false;
   submitted_add = false;
@@ -354,6 +355,15 @@ export class ConsultVeterinarianComponent implements OnInit {
     }else{
       this.followUpEndTimeIsValid = false;
     }
+    this.followUpValid = false;
+    if(this.addForm.value.followUpDate){
+      if(!this.addForm.value.followUpStartTime || !this.addForm.value.followUpEndTime){
+        this.warningDialog('กรุณากรอกข้อมูลให้ครบ','กรอก follow up, follow up start time, follow up end time');
+        this.followUpValid = true;
+        return;
+      }
+    }
+    console.log(this.addForm.value);
     this.spinner.show();
     this.catBotService.patchStatusAndBotMode(this.addForm.value).subscribe(resp => {
       console.log(resp)
@@ -376,6 +386,14 @@ export class ConsultVeterinarianComponent implements OnInit {
     Swal.fire({
       type: 'error',
       title: 'เกิดข้อผิดพลาด',
+      text: msg
+    })
+  }
+
+  warningDialog(title,msg){
+    Swal.fire({
+      type: 'warning',
+      title: title,
       text: msg
     })
   }
