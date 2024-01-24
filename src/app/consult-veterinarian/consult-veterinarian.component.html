@@ -293,9 +293,14 @@
                         </div>
                         <div class="form-group m-b-30">
                             <label class="control-label">follow up</label>
-                            <input type="text" class="form-control" formControlName="followUpDate" (click)="setFollowUpDate()" 
-                            daterangepicker [options]="optionsSingleDate" (selected)="selectedFollowUpDate($event, daterange)"
-                            [ngClass]="{ 'is-invalid': followUpValid }">
+                            <div class="input-group date">
+                              <input type="text" class="form-control" formControlName="followUpDate" [disabled]="true" (click)="setFollowUpDate()" 
+                              daterangepicker [options]="optionsSingleDate" (selected)="selectedFollowUpDate($event, daterange)" [readonly]="true" 
+                              [ngClass]="{ 'is-invalid': followUpValid }">
+                              <span class="input-group-addon input-group-text" style="cursor: pointer;" (click)="clearFollowUp()">
+                                  <i class="fa fa-ban"></i>
+                              </span>
+                            </div>
                         </div>
                         <div class="form-group m-b-30">
                             <label class="control-label">follow up start time</label>
