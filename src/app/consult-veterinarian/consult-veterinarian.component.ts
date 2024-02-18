@@ -404,6 +404,34 @@ export class ConsultVeterinarianComponent implements OnInit {
     });
   }
 
+  recommendHospitals(){
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.value) {
+        this.spinner.show()
+        var req = {
+          consultVeterinarianId: this.addForm.value.id
+        }
+        this.catBotService.recommendHospitals(req).subscribe(resp => {
+          this.spinner.hide()
+          this.searchConsultVeterinarianByCriteriaPage()
+        }, err => {
+          this.spinner.hide()
+          this.failDialog('')
+          console.log("=== err ===")
+          console.log(err)
+        });
+      }
+    })
+  }
+
   successDialog(){
     Swal.fire("ทำรายการสำเร็จ!", "", "success");
   }

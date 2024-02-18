@@ -259,6 +259,10 @@ export class CatBotService {
     return this.http.patch<any>(environment.api_endpoint + '/cat-bot/consult-veterinarian/patch/status-bot-mode', JSON.stringify(req),this.httpOptions);
   }
 
+  recommendHospitals(req): Observable<any> {
+    return this.http.post<any>(environment.api_endpoint + '/cat-bot/recommend-hospitals', JSON.stringify(req),this.httpOptions);
+  }
+
   handleError(error) {
     console.log(error);
     let errorMessage = '';
