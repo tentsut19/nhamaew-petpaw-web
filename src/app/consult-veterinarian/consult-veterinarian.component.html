@@ -95,7 +95,9 @@
                             <select class="form-control" [(ngModel)]="status">
                                 <option value="">all</option>
                                 <option value="W">รอรับเรื่อง</option>
-                                <option value="R">รับเรื่อง</option>
+                                <option value="R">อยู่ระหว่างดำเนินการ</option>
+                                <option value="F">Follow up</option>
+                                <option value="C">ปิดเคส</option>
                                 <option value="S">ส่งงานต่อ</option>
                             </select>
                           </div>
@@ -151,7 +153,9 @@
                                     <td style="width: 10%;" class="center">
                                         <b *ngIf="item.status == 'W' " style="color: orange;">{{item.statusDisplay}}</b>
                                         <b *ngIf="item.status == 'R' " style="color: blue;">{{item.statusDisplay}}</b>
-                                        <b *ngIf="item.status == 'S' " style="color: green;">{{item.statusDisplay}}</b>
+                                        <b *ngIf="item.status == 'F' " style="color: blueviolet;">{{item.statusDisplay}}</b>
+                                        <b *ngIf="item.status == 'C' " style="color: green;">{{item.statusDisplay}}</b>
+                                        <b *ngIf="item.status == 'S' " style="color: orangered;">{{item.statusDisplay}}</b>
                                     </td>
                                     <td style="width: 10%;" class="center">
                                         <b *ngIf="item.customerGroup == 'Elite' " style="color: orange;">{{item.customerGroup}}</b>
@@ -194,15 +198,15 @@
         </div>
     </div>
 </div>
-
+  
 
     <!--modal detail-->
-    <div class="modal" id="modal-detail" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1">
+    <div class="modal fade" id="modal-detail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
         <div class="modal-dialog modal-xl" role="document">
             <div class="modal-content">
                 <div class="modal-header modal-header-add">
                     <h4 class="modal-title" id="exampleModalLabel1">รายละเอียด</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
                 </div>
                 <div class="modal-body">
                     <form [formGroup]="addForm">
@@ -318,7 +322,9 @@
                             <label for="exampleFormControlSelect1">สถานะเคส</label>
                             <select class="form-control" formControlName="status" [ngClass]="{ 'is-invalid': submitted_add &amp;&amp; addForm.controls.status.errors }">
                                 <option value="W">รอรับเรื่อง</option>
-                                <option value="R">รับเรื่อง</option>
+                                <option value="R">อยู่ระหว่างดำเนินการ</option>
+                                <option value="F">Follow up</option>
+                                <option value="C">ปิดเคส</option>
                                 <option value="S">ส่งงานต่อ</option>
                             </select>
                             <div *ngIf="submitted_add &amp;&amp; addForm.controls.status.errors" class="text-danger">
@@ -338,9 +344,9 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-info" (click)="recommendHospitals()">แนะนำโรงพยาบาลให้ลูกค้า</button>
+                    <!-- <button type="button" class="btn btn-info" (click)="recommendHospitals()">แนะนำโรงพยาบาลให้ลูกค้า</button> -->
                     <button type="button" class="btn btn-success" (click)="patchStatusAndBotMode()">บันทึก</button>
-                    <button type="button" class="btn btn-light" data-dismiss="modal">ยกเลิก</button>
+                    <button type="button" class="btn btn-light" (click)="dismissModalDetail()">ยกเลิก</button>
                 </div>
             </div>
         </div>

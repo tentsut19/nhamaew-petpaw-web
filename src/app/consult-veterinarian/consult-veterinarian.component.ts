@@ -294,7 +294,11 @@ export class ConsultVeterinarianComponent implements OnInit {
     return params;
   }
 
+  dataOrigin
   openDialogDetail(data){
+    this.validateUpdate = true;
+    this.notifySave = false;
+    this.dataOrigin = data;
     var weightRangeName = "";
     if(data.weightRange == "1.2-"){
       weightRangeName = "น้อยกว่า 1.2 kg";
@@ -338,12 +342,18 @@ export class ConsultVeterinarianComponent implements OnInit {
     $('#modal-detail').modal('show');
   }
 
+  dismissModalDetail(){
+    $('#modal-detail').modal('hide');
+  }
+
   timeMask = [/\d/, /\d/, ':', /\d/, /\d/];
   validateHhMm(inputField) {
     let isValid = /^([0-1]?[0-9]|2[0-3]):([0-5][0-9])(:[0-5][0-9])?$/.test(inputField);
     return isValid;
   }
 
+  validateUpdate = true;
+  notifySave = false;
   followUpValid = false;
   followUpEndTimeIsValid = false;
   followUpStartTimeIsValid = false;
@@ -388,6 +398,44 @@ export class ConsultVeterinarianComponent implements OnInit {
       }
     }
 
+    if(this.addForm.value.moreDetails != this.dataOrigin.moreDetails){
+      this.validateUpdate = false;
+    }
+    if(this.addForm.value.customerGroup != this.dataOrigin.customerGroup){
+      this.validateUpdate = false;
+    }
+    if(this.addForm.value.symptomLevel != this.dataOrigin.symptomLevel){
+      this.validateUpdate = false;
+    }
+    if(this.addForm.value.followUpDate != this.dataOrigin.followUpDate){
+      this.validateUpdate = false;
+    }
+    if(this.addForm.value.followUpStartTime != this.dataOrigin.followUpStartTime){
+      this.validateUpdate = false;
+    }
+    if(this.addForm.value.followUpEndTime != this.dataOrigin.followUpEndTime){
+      this.validateUpdate = false;
+    }
+    if(this.addForm.value.status != this.dataOrigin.status){
+      this.validateUpdate = false;
+    }
+    if(this.addForm.value.botMode != this.dataOrigin.botMode){
+      this.validateUpdate = false;
+    }
+    
+    if(!this.validateUpdate && !this.notifySave){
+      Swal.fire({
+        title: '',
+        text: "โปรดอัปเดต “ช่องสถานะเคส” ให้เป็นปัจจุบันเสมอ และหากอัปเดตแล้วสามารถกดบันทึกอีกครั้งได้เลย   ",
+        type: 'warning',
+        allowOutsideClick: false,
+        // confirmButtonColor: '#3085d6',
+        confirmButtonText: 'รับทราบ'
+      }).then((result) => {
+        this.notifySave = true;
+      })
+      return;
+    }
 
     console.log(this.addForm.value);
     this.spinner.show();
