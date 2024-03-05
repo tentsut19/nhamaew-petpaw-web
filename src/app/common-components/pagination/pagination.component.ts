@@ -25,7 +25,7 @@ export class PaginationComponent {
   currentIndex = -1;
   @Input('page') page = 1;
   @Input('count') count = 100;
-  @Input('pageSize') pageSize = 10;
+  @Input('pageSize') pageSize = 50;
 
   constructor() 
   {

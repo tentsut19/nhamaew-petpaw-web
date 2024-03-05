@@ -24,7 +24,7 @@ export class CatBotService {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
       // 'user_id': localStorage.getItem("userId"),
-      'X-User': localStorage.getItem("name")
+      // 'X-User': localStorage.getItem("name")
     })
   };
 

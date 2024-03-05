@@ -10,6 +10,7 @@ declare var $: any;
 
 export class MenuLeftComponent { 
   cabsatToken;
+  name;
   public isCustomerCollapsed = true;
   public isBranchCollapsed = true;
   public isSettingCollapsed = true;
@@ -22,6 +23,7 @@ export class MenuLeftComponent {
   personnel
   ngOnInit() {
     this.cabsatToken = localStorage.getItem('accessToken');
+    this.name = localStorage.getItem('name');
     if(this.cabsatToken == null){
       this.logout();
     }

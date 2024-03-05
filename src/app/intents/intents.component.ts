@@ -121,7 +121,7 @@ export class IntentsComponent implements OnInit {
   itemEnd;
   page = 1;
   pageOutPut = 0;
-  pageSizeOutPut = 10;
+  pageSizeOutPut = 50;
   count = 0;
   getRequestParams() {
     let params = {};

@@ -239,7 +239,7 @@ export class ConsultVeterinarianComponent implements OnInit {
   itemEnd;
   page = 1;
   pageOutPut = 0;
-  pageSizeOutPut = 10;
+  pageSizeOutPut = 50;
   count = 0;
   getRequestParams() {
     let params = {};
@@ -437,6 +437,9 @@ export class ConsultVeterinarianComponent implements OnInit {
       return;
     }
 
+    this.addForm.patchValue({
+      userName: localStorage.getItem("name")
+    });
     console.log(this.addForm.value);
     this.spinner.show();
     this.catBotService.patchStatusAndBotMode(this.addForm.value).subscribe(resp => {
