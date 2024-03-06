@@ -42,6 +42,8 @@ export class ConsultVeterinarianComponent implements OnInit {
         'followUpDate': [''],
         'followUpStartTime': [''],
         'followUpEndTime': [''],
+        'doctorDate': [''],
+        'doctorTime': [''],
         'moreDetails': [''],
         'customerGroup': [''],
         'symptomLevel': [''],
@@ -194,6 +196,24 @@ export class ConsultVeterinarianComponent implements OnInit {
     });
   }
 
+  selectedDoctorDate(value: any, datepicker?: any) {
+    console.log(value);
+    console.log(datepicker);
+    this.addForm.patchValue({
+      doctorDate: this.convertDateToStrngDDMMYYYY(value.start._d),
+    });
+  }
+  setDoctorDate(){
+    this.addForm.patchValue({
+      doctorDate: this.convertDateToStrngDDMMYYYY(new Date()),
+    });
+  }
+  clearDoctorDate(){
+    this.addForm.patchValue({
+      doctorDate: "",
+    });
+  }
+
   convertDateToStrngDDMMYYYY(date){
     console.log(date);
     let dateCurrent = new Date();
@@ -333,6 +353,8 @@ export class ConsultVeterinarianComponent implements OnInit {
       followUpDate: data.followUpDate,
       followUpStartTime: data.followUpStartTime,
       followUpEndTime: data.followUpEndTime,
+      doctorDate: data.doctorDate,
+      doctorTime: data.doctorTime,
       moreDetails: data.moreDetails,
       customerGroup: data.customerGroup,
       symptomLevel: data.symptomLevel,
@@ -357,6 +379,8 @@ export class ConsultVeterinarianComponent implements OnInit {
   followUpValid = false;
   followUpEndTimeIsValid = false;
   followUpStartTimeIsValid = false;
+  doctorDateValid = false;
+  doctorTimeValid = false;
   submitted_add = false;
   patchStatusAndBotMode(){
     this.submitted_add = true;
@@ -394,6 +418,25 @@ export class ConsultVeterinarianComponent implements OnInit {
       if(!this.addForm.value.followUpStartTime || !this.addForm.value.followUpDate){
         this.warningDialog('กรุณากรอกข้อมูลให้ครบ','กรอก follow up, follow up start time, follow up end time');
         this.followUpValid = true;
+        return;
+      }
+    }
+
+    if(this.addForm.value.doctorTime && !this.validateHhMm(this.addForm.value.doctorTime)){
+      this.doctorTimeValid = true;
+      return;
+    }else{
+      this.doctorTimeValid = false;
+    }
+    if(this.addForm.value.doctorDate || this.addForm.value.doctorTime){
+      if(!this.addForm.value.doctorDate){
+        this.warningDialog('กรุณากรอกข้อมูลให้ครบ','กรุณาระบุ วันที่นัดหมายสัตวแพทย์');
+        this.doctorDateValid = true;
+        return;
+      }
+      if(!this.addForm.value.doctorTime){
+        this.warningDialog('กรุณากรอกข้อมูลให้ครบ','กรุณาระบุ เวลาที่นัดหมายสัตวแพทย์');
+        this.doctorDateValid = true;
         return;
       }
     }

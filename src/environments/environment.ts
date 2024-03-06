@@ -4,10 +4,10 @@
 
 export const environment = {
   production: false,
-  // api_endpoint: 'http://localhost:5000/api/v1',
-  // api_domain: 'http://localhost:5000/',
-  api_endpoint: 'https://test-api.net/api/v1',
-  api_domain: 'https://test-api.net/',
+  api_endpoint: 'http://localhost:5000/api/v1',
+  api_domain: 'http://localhost:5000/',
+  // api_endpoint: 'https://test-api.net/api/v1',
+  // api_domain: 'https://test-api.net/',
 
   // api_endpoint: 'https://cabsat-api.easynet.co.th/api/v1',
   // api_domain: 'https://cabsat-api.easynet.co.th/',
