@@ -263,6 +263,10 @@ export class CatBotService {
     return this.http.post<any>(environment.api_endpoint + '/cat-bot/recommend-hospitals', JSON.stringify(req),this.httpOptions);
   }
 
+  notifyToUser(req): Observable<any> {
+    return this.http.post<any>(environment.api_endpoint + '/cat-bot/notify-to-user', JSON.stringify(req),this.httpOptions);
+  }
+
   handleError(error) {
     console.log(error);
     let errorMessage = '';

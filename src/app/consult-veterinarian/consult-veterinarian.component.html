@@ -134,6 +134,7 @@
                                     <th style="width: 10%;" class="center">โหมด</th>
                                     <th style="width: 10%;" class="center">follow up</th>
                                     <th style="width: 10%;" class="center">วันที่ทำรายการ</th>
+                                    <th style="width: 10%;" class="center">ผู้รับเรื่องรายการนี้</th>
                                     <th style="width: 5%;" class="center"></th>
                                 </tr>
                             </thead>
@@ -175,11 +176,15 @@
                                         <span>{{item.followUpStartTime}}-{{item.followUpEndTime}}</span>
                                     </td>
                                     <td style="width: 10%;" class="center">{{item.createdAt | date: 'dd/MM/yyyy HH:mm:ss'}}</td>
+                                    <td style="width: 10%;" class="center">{{item.createdBy}}</td>
                                     <td style="width: 5%;" class="center">
                                         <a href="javascript:void(0);" (click)="openDialogDetail(item)">
                                           <span class="fas fa-list btn-add"></span></a>
                                           &nbsp;
-                                      </td>
+                                        <a href="javascript:void(0);" (click)="notifyToUser(item)">
+                                          <span class="fas fa-bell btn-edit"></span></a>
+                                          &nbsp;
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>

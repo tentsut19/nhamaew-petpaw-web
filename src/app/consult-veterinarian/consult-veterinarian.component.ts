@@ -483,6 +483,34 @@ export class ConsultVeterinarianComponent implements OnInit {
     })
   }
 
+  notifyToUser(data){
+    Swal.fire({
+      title: 'ยืนยันการส่ง Line Notify?',
+      text: "",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: 'ยกเลิก',
+      confirmButtonText: 'ยืนยัน'
+    }).then((result) => {
+      if (result.value) {
+        this.spinner.show()
+        var req = {
+          id: data.id
+        }
+        this.catBotService.notifyToUser(req).subscribe(resp => {
+          this.spinner.hide();
+        }, err => {
+          this.spinner.hide()
+          this.failDialog('')
+          console.log("=== err ===")
+          console.log(err)
+        });
+      }
+    })
+  }
+
   successDialog(){
     Swal.fire("ทำรายการสำเร็จ!", "", "success");
   }
