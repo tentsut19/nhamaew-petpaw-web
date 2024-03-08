@@ -44,18 +44,33 @@ export class ConsultVeterinarianComponent implements OnInit {
         'followUpEndTime': [''],
         'doctorDate': [''],
         'doctorTime': [''],
+        'doctorTimeEnd': [''],
         'moreDetails': [''],
         'customerGroup': [''],
         'symptomLevel': [''],
         'status': [''],
-        'botMode': ['']
+        'botMode': [''],
+        'userName': ['']
     });
 
   }
 
   ngOnInit() {
     this.startDate = new Date();
+    this.startDate.setHours(0, 0, 0, 0);
     this.endDate = new Date();
+    this.endDate.setHours(23, 59, 59, 999);
+
+    this.startDockerDate = new Date();
+    this.startDockerDate.setHours(0, 0, 0, 0);
+    this.endDockerDate = new Date();
+    this.endDockerDate.setHours(23, 59, 59, 999);
+
+    this.startFollowUpDate = new Date();
+    this.startFollowUpDate.setHours(0, 0, 0, 0);
+    this.endFollowUpDate = new Date();
+    this.endFollowUpDate.setHours(23, 59, 59, 999);
+    
     this.searchConsultVeterinarianByCriteriaPage();
     this.getAllTag();
   }
@@ -150,11 +165,72 @@ export class ConsultVeterinarianComponent implements OnInit {
   isShowStartWork = false;
   showStartWork(){
     this.isShowStartWork = !this.isShowStartWork;
+    if(this.isShowStartWork){
+      this.isShowFollowUp = false;
+      this.isShowDockerDate = false;
+    }
+  }
+
+  isShowDockerDate = false;
+  showDockerDate(){
+    this.isShowDockerDate = !this.isShowDockerDate;
+    if(this.isShowDockerDate){
+      this.isShowFollowUp = false;
+      this.isShowStartWork = false;
+    }
   }
 
   isShowFollowUp = false;
   showFollowUp(){
     this.isShowFollowUp = !this.isShowFollowUp;
+    if(this.isShowFollowUp){
+      this.isShowDockerDate = false;
+      this.isShowStartWork = false;
+    }
+  }
+
+  isStartWorkSort = true;
+  showStartWorkSort(){
+    this.isStartWorkSort = !this.isStartWorkSort;
+    console.log(this.isStartWorkSort)
+    if(this.isStartWorkSort){
+      this.isDockerDateSort = false;
+      this.isFollowUpSort = false;
+    }
+  }
+
+  isDockerDateSort = false;
+  showDockerDateSort(){
+    this.isDockerDateSort = !this.isDockerDateSort;
+    if(this.isDockerDateSort){
+      this.isStartWorkSort = false;
+      this.isFollowUpSort = false;
+    }
+  }
+
+  startDockerDate;
+  endDockerDate;
+  selectedDockerDate(value: any, datepicker?: any) {
+    // this is the date  selected
+    console.log(value);
+ 
+    // any object can be passed to the selected event and it will be passed back here
+    datepicker.start = value.start;
+    datepicker.end = value.end;
+    this.startDockerDate = value.start._d;
+    this.endDockerDate = value.end._d;
+
+    console.log(this.startDockerDate);
+    console.log(this.endDockerDate);
+  }
+
+  isFollowUpSort = false;
+  showFollowUpSort(){
+    this.isFollowUpSort = !this.isFollowUpSort;
+    if(this.isFollowUpSort){
+      this.isStartWorkSort = false;
+      this.isDockerDateSort = false;
+    }
   }
 
   startFollowUpDate;
@@ -169,8 +245,8 @@ export class ConsultVeterinarianComponent implements OnInit {
     this.startFollowUpDate = value.start._d;
     this.endFollowUpDate = value.end._d;
 
-    console.log(this.startDate);
-    console.log(this.endDate);
+    console.log(this.startFollowUpDate);
+    console.log(this.endFollowUpDate);
   }
 
   optionsSingleDate: any = {
@@ -252,6 +328,9 @@ export class ConsultVeterinarianComponent implements OnInit {
 
   input;
   status = '';
+  startWorkSort = 'desc';
+  dockerDateSort = 'desc';
+  followUpSort = 'desc';
   customerGroup = '';
   symptomLevel = '';
   tagId = '';
@@ -293,6 +372,15 @@ export class ConsultVeterinarianComponent implements OnInit {
       }
     }
 
+    if (this.isShowDockerDate) {
+      if (this.startDockerDate) {
+        params[`startDockerDate`] = this.startDockerDate;
+      }
+      if (this.endDockerDate) {
+        params[`endDockerDate`] = this.endDockerDate;
+      }
+    }
+
     if (this.isShowFollowUp) {
       if (this.startFollowUpDate) {
         params[`startFollowUpDate`] = this.startFollowUpDate;
@@ -309,6 +397,13 @@ export class ConsultVeterinarianComponent implements OnInit {
     if (this.pageSizeOutPut) {
       params[`recordPerPage`] = this.pageSizeOutPut;
     }
+
+    params[`isStartWorkSort`] = this.isStartWorkSort;
+    params[`startWorkSort`] = this.startWorkSort;
+    params[`isDockerDateSort`] = this.isDockerDateSort;
+    params[`dockerDateSort`] = this.dockerDateSort;
+    params[`isFollowUpSort`] = this.isFollowUpSort;
+    params[`followUpSort`] = this.followUpSort;
 
     console.log(params);
     return params;
@@ -355,6 +450,7 @@ export class ConsultVeterinarianComponent implements OnInit {
       followUpEndTime: data.followUpEndTime,
       doctorDate: data.doctorDate,
       doctorTime: data.doctorTime,
+      doctorTimeEnd: data.doctorTimeEnd,
       moreDetails: data.moreDetails,
       customerGroup: data.customerGroup,
       symptomLevel: data.symptomLevel,
@@ -381,6 +477,7 @@ export class ConsultVeterinarianComponent implements OnInit {
   followUpStartTimeIsValid = false;
   doctorDateValid = false;
   doctorTimeValid = false;
+  doctorTimeEndValid = false;
   submitted_add = false;
   patchStatusAndBotMode(){
     this.submitted_add = true;
@@ -428,14 +525,25 @@ export class ConsultVeterinarianComponent implements OnInit {
     }else{
       this.doctorTimeValid = false;
     }
-    if(this.addForm.value.doctorDate || this.addForm.value.doctorTime){
+    if(this.addForm.value.doctorTimeEnd && !this.validateHhMm(this.addForm.value.doctorTimeEnd)){
+      this.doctorTimeEndValid = true;
+      return;
+    }else{
+      this.doctorTimeEndValid = false;
+    }
+    if(this.addForm.value.doctorDate || this.addForm.value.doctorTime || this.addForm.value.doctorTimeEnd){
       if(!this.addForm.value.doctorDate){
         this.warningDialog('กรุณากรอกข้อมูลให้ครบ','กรุณาระบุ วันที่นัดหมายสัตวแพทย์');
         this.doctorDateValid = true;
         return;
       }
       if(!this.addForm.value.doctorTime){
-        this.warningDialog('กรุณากรอกข้อมูลให้ครบ','กรุณาระบุ เวลาที่นัดหมายสัตวแพทย์');
+        this.warningDialog('กรุณากรอกข้อมูลให้ครบ','กรุณาระบุ เวลาเริ่มต้นที่นัดหมายสัตวแพทย์');
+        this.doctorDateValid = true;
+        return;
+      }
+      if(!this.addForm.value.doctorTimeEnd){
+        this.warningDialog('กรุณากรอกข้อมูลให้ครบ','กรุณาระบุ เวลาสิ้นสุดที่นัดหมายสัตวแพทย์');
         this.doctorDateValid = true;
         return;
       }
@@ -448,6 +556,15 @@ export class ConsultVeterinarianComponent implements OnInit {
       this.validateUpdate = false;
     }
     if(this.addForm.value.symptomLevel != this.dataOrigin.symptomLevel){
+      this.validateUpdate = false;
+    }
+    if(this.addForm.value.doctorDate != this.dataOrigin.doctorDate){
+      this.validateUpdate = false;
+    }
+    if(this.addForm.value.doctorTime != this.dataOrigin.doctorTime){
+      this.validateUpdate = false;
+    }
+    if(this.addForm.value.doctorTimeEnd != this.dataOrigin.doctorTimeEnd){
       this.validateUpdate = false;
     }
     if(this.addForm.value.followUpDate != this.dataOrigin.followUpDate){
